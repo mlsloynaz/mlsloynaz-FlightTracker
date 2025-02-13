@@ -53,7 +53,7 @@ public class FlightService {
      *         inform our provide the front-end client with information about the added Flight.
      */
     public Flight addFlight(Flight flight){
-        return null;
+        return this.flightDAO.insertFlight(flight);
     }
 
     /**
@@ -70,7 +70,9 @@ public class FlightService {
      *         user should have some insight if they attempted to edit a nonexistent flight.)
      */
     public Flight updateFlight(int flight_id, Flight flight){
-        return null;
+        this.flightDAO.updateFlight(flight_id, flight);
+        flight.setFlight_id(flight_id);
+        return flight;
     }
 
     /**
@@ -80,7 +82,7 @@ public class FlightService {
      * @return all flights in the database.
      */
     public List<Flight> getAllFlights() {
-        return null;
+        return this.flightDAO.getAllFlights();
     }
 
     /**
@@ -92,6 +94,6 @@ public class FlightService {
      * @return all flights departing from departure_city and arriving at arrival_city.
      */
     public List<Flight> getAllFlightsFromCityToCity(String departure_city, String arrival_city) {
-        return null;
+        return this.flightDAO.getAllFlightsFromCityToCity(departure_city, arrival_city);
     }
 }
