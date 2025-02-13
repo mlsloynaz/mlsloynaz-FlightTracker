@@ -144,9 +144,8 @@ public class FlightDAO {
      * @param id a flight ID.
      * @param flight a flight object. the flight object does not contain a flight ID.
      */
-    public Flight updateFlight(int id, Flight flight){
+    public void updateFlight(int id, Flight flight){
         Connection connection = ConnectionUtil.getConnection();
-        int countRows = 0;
         try {
             //Write SQL logic here
             String sql = "UPDATE flight SET departure_city=?, arrival_city=? WHERE flight_id=?";
@@ -157,14 +156,10 @@ public class FlightDAO {
             preparedStatement.setString(2, flight.getArrival_city());
             preparedStatement.setInt(3, id);
 
-            countRows = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
-        if(countRows>0){
-            //flight.setFlight_id(id);
-            return flight;
-        }else return null;
        
     }
 
